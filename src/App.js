@@ -4,13 +4,20 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: 'My Name'
+      name: ''
     }
   }
 
-  changeName = newName => {
+  changeNameSubmit = newName => {
     this.setState({
       name: newName
+    })
+  }
+
+  changeName = e => {
+    const name = e.target.value
+    this.setState({
+      name
     })
   }
 
@@ -20,17 +27,29 @@ class App extends Component {
       <div>
         <br />
         <br />
-        <button onClick={() => this.changeName('My Name is Lei Hua')}>
+        <button onClick={() => this.changeNameSubmit('My Name is Lei Hua')}>
           Change State arrow function
         </button>
         <br />
         <br />
-        <button onClick={this.changeName.bind(this, 'My Name data bind')}>
+        <button onClick={this.changeNameSubmit.bind(this, 'My Name data bind')}>
           Change State bind new name
         </button>
         <br />
         <br />
-        <div>{name}</div>
+        <label>
+          Enter your name:
+          <br />
+          <input
+            type="text"
+            value={name}
+            onChange={this.changeName.bind(this)}
+          />
+        </label>
+
+        <br />
+        <br />
+        <div>Your name is: {name}</div>
       </div>
     )
   }
