@@ -7,13 +7,27 @@ class App extends Component {
       name: 'My Name'
     }
   }
+
+  changeName = newName => {
+    this.setState({
+      name: newName
+    })
+  }
+
   render() {
     const { name } = this.state
     return (
       <div>
         <br />
         <br />
-        <button>Change State</button>
+        <button onClick={() => this.changeName('My Name is Lei Hua')}>
+          Change State arrow function
+        </button>
+        <br />
+        <br />
+        <button onClick={this.changeName.bind(this, 'My Name data bind')}>
+          Change State bind new name
+        </button>
         <br />
         <br />
         <div>{name}</div>
